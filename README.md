@@ -13,13 +13,17 @@ By: Angelo Lacuesta and Paulo Ramilo
 | 2^24  | ASM    | 0.024000, 0.017000, 0.013000, 0.014000, 0.014000|
 | 2^28  | ASM    | 0.247000, 0.245000, 0.227000, 1.528000, 0.226000|
 
+
 Average Execution Time:
+
 2^20 
 C: 0.0132 seconds
 ASM: 0.0030 seconds
+
 2^24
 C: 0.1198 seconds
 ASM: 0.0164 seconds
+
 2^28
 C: 1.6662 seconds
 ASM: 0.4946 seconds
@@ -35,12 +39,15 @@ ASM: 0.4946 seconds
 | 2^28  | ASM    | 0.847000, 0.561000, 0.493000, 0.561000, 0.847000|
 
 Average Execution Time:
+
 2^20 
 C: 0.0074 seconds
 ASM: 0.0030 seconds
+
 2^24
 C: 0.0924 seconds
 ASM: 0.0474 seconds
+
 2^28
 C: 1.5328 seconds
 ASM: 0.6618 seconds
