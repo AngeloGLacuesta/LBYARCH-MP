@@ -38,7 +38,7 @@ int main() {
         printf("\t\t\t\t inputData[%d] = %.2lf\n", counter, inputData[counter]);
     }
 
-    printf("\n\t\t\t\t| Benchmark for Stencil Computations |\n");
+    printf("\n\t\t\t\t--> Array Size 2^%d <--\n", exponentSize[idx]");
     for (idx = 0; idx < totalSize; idx++) {
         int currentSize = dataSize[idx];
         double* cResult = (double*)malloc(currentSize * sizeof(double));
@@ -49,8 +49,6 @@ int main() {
             free(asmResult);
             continue; 
         }
-
-        printf("\n--> Array Size 2^%d <--\n", exponentSize[idx]);
 
         clock_t clockC = clock();
         compute(currentSize, inputData, cResult);
