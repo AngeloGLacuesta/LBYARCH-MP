@@ -11,14 +11,14 @@ void compute(int length, double* input, double* output) {
     }
 }
 
-extern void asmStencil(int length, double* input, double* output);
-
 double clockDuration(clock_t startTime, clock_t endTime) {
     return ((double)(endTime - startTime)) / CLOCKS_PER_SEC;
 }
 
+extern void asmStencil(int length, double* input, double* output);
+
 int main() {
-    int dataSize[] = { 1 << 20, 1 << 24, 1 << 28 }; // {2^20, 2^24, 2^28}
+    int dataSize[] = { 1 << 20, 1 << 24, 1 << 28 }; 
     int totalSize = sizeof(dataSize) / sizeof(dataSize[0]);
     int exponentSize[] = { 20, 24, 28 };
     int counter;
@@ -47,31 +47,26 @@ int main() {
             fprintf(stderr, "ERROR: Failed to allocate memory for result arrays\n");
             free(cResult);
             free(asmResult);
-            continue; // Skip this iteration
+            continue; 
         }
 
         printf("\n--> Array Size 2^%d <--\n", exponentSize[idx]);
 
-        // C Version
         clock_t clockC = clock();
         compute(currentSize, inputData, cResult);
         clock_t end_clockC = clock();
         double computationTimeC = clockDuration(clockC, end_clockC);
-
-        // Assembly Version
         clock_t clockASM = clock();
         asmStencil(currentSize, inputData, asmResult);
         clock_t end_clockASM = clock();
         double computationTimeASM = clockDuration(clockASM, end_clockASM);
-
-        // Print C Function Output
+        
         printf("\n\t\t\t\t| Calculated Values using C |\n");
         for (counter = 3; counter < num + 3 && counter < currentSize - 3; counter++) {
             printf("\t\t\t\t cResult[%d] = %.2lf\n", counter, cResult[counter]);
         }
         printf("\n\t\t| C Program Computation Time for Array Size %d: %lf seconds |\n", currentSize, computationTimeC);
 
-        // Print Assembly Function Output
         printf("\n\t\t\t\t| Calculated Values using Assembly |\n");
         for (counter = 3; counter < num + 3 && counter < currentSize - 3; counter++) {
             printf("\t\t asmResult[%d] = %.2lf\n", counter, asmResult[counter]);
